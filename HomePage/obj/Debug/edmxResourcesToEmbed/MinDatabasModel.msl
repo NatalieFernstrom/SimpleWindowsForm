@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="MinDataBasModelStoreContainer" CdmEntityContainer="MinDataBasEntities">
+    <EntitySetMapping Name="Film">
+      <EntityTypeMapping TypeName="MinDataBasModel.Film">
+        <MappingFragment StoreEntitySet="Film">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Title" ColumnName="Title" />
+          <ScalarProperty Name="Läng" ColumnName="Läng" />
+          <ScalarProperty Name="Sid" ColumnName="Sid" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Kategori">
+      <EntityTypeMapping TypeName="MinDataBasModel.Kategori">
+        <MappingFragment StoreEntitySet="Kategori">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="FilmId" ColumnName="FilmId" />
+          <ScalarProperty Name="Kategori1" ColumnName="Kategori" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Skadespelare">
+      <EntityTypeMapping TypeName="MinDataBasModel.Skadespelare">
+        <MappingFragment StoreEntitySet="Skadespelare">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Förnamn" ColumnName="Förnamn" />
+          <ScalarProperty Name="Efternamn" ColumnName="Efternamn" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

@@ -1,0 +1,69 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="MinDataBasModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Film">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Title" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Läng" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Sid" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Skadespelare" Relationship="Self.FK_Film_Skadespelare" FromRole="Film" ToRole="Skadespelare" />
+    <NavigationProperty Name="Kategori" Relationship="Self.FK_kategori_Film" FromRole="Film" ToRole="Kategori" />
+  </EntityType>
+  <EntityType Name="Kategori">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="FilmId" Type="Int32" Nullable="false" />
+    <Property Name="Kategori1" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="Film" Relationship="Self.FK_kategori_Film" FromRole="Kategori" ToRole="Film" />
+  </EntityType>
+  <EntityType Name="Skadespelare">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Förnamn" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Efternamn" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="Film" Relationship="Self.FK_Film_Skadespelare" FromRole="Skadespelare" ToRole="Film" />
+  </EntityType>
+  <Association Name="FK_Film_Skadespelare">
+    <End Role="Skadespelare" Type="Self.Skadespelare" Multiplicity="1" />
+    <End Role="Film" Type="Self.Film" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Skadespelare">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Film">
+        <PropertyRef Name="Sid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_kategori_Film">
+    <End Role="Film" Type="Self.Film" Multiplicity="1" />
+    <End Role="Kategori" Type="Self.Kategori" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Film">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Kategori">
+        <PropertyRef Name="FilmId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="MinDataBasEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Film" EntityType="Self.Film" />
+    <EntitySet Name="Kategori" EntityType="Self.Kategori" />
+    <EntitySet Name="Skadespelare" EntityType="Self.Skadespelare" />
+    <AssociationSet Name="FK_Film_Skadespelare" Association="Self.FK_Film_Skadespelare">
+      <End Role="Skadespelare" EntitySet="Skadespelare" />
+      <End Role="Film" EntitySet="Film" />
+    </AssociationSet>
+    <AssociationSet Name="FK_kategori_Film" Association="Self.FK_kategori_Film">
+      <End Role="Film" EntitySet="Film" />
+      <End Role="Kategori" EntitySet="Kategori" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
