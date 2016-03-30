@@ -39,9 +39,6 @@ namespace HomePage
         private void SaveChanges_Click(object sender, EventArgs e)
         {
             this.context.SaveChanges();
-            //this.filmBindingSource.DataSource = context.Film.Local.ToList();
-            //this.skadespelareBindingSource.DataSource = context.Skadespelare.Local.ToList();
-            //this.kategoriBindingSource.DataSource = context.Kategori.Local.ToList();
 
         }
 
